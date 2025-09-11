@@ -1,1 +1,239 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Big news this weekh</title></head><body style="margin:0;padding:20px;background:#16a34a;font-family:Arial,sans-serif;"><table role="presentation" width="100%"><tr><td align="center"><table role="presentation" width="640" style="max-width:100%;background:#fff;border-radius:10px"><tr><td style="padding:28px 20px;text-align:center;background:#16a34a;color:#fff"><h1>Big news this weekh</h1><div>Short subheadingh</div></td></tr><tr><td style="padding:22px 20px;text-align:center"><a href="www.singanewpsalm.church" style="display:inline-block;padding:12px 22px;border-radius:8px;background:#22c55e;color:#fff;text-decoration:none">Read the articlehh</a><div style="margin-top:12px;color:#475569;line-height:1.6">This is a short paragraph that appears under the CTA button. It wraps correctly and will not overflow the preview area.</div></td></tr><tr><td style="padding:18px 20px;text-align:center;font-size:13px;color:#94a3b8"><a href="www.singanewpsalm.church">Unsubscribe</a></td></tr></table></td></tr></table></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Working Newsletter Builder — Export Ready</title>
+  <style>
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:#071022;color:#E6EEF8}
+    .outer{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+    .frame{width:100%;max-width:1200px;background:linear-gradient(180deg,#071226,#071121);border-radius:12px;display:grid;grid-template-columns:340px 1fr;gap:18px;padding:18px;border:1px solid #112036}
+    /* sidebar */
+    .panel{background:#0b1626;border-radius:10px;padding:14px;border:1px solid #122036}
+    h1{font-size:18px;margin:0 0 8px 0}
+    label{display:block;color:#9fb0d6;font-size:13px;margin-top:12px}
+    input[type="text"],textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #162538;background:#071025;color:#e6eef8;font-size:14px}
+    textarea{min-height:90px;resize:vertical}
+    .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+    button{cursor:pointer;border:0;padding:10px 12px;border-radius:8px;font-weight:800}
+    .btn-export{background:linear-gradient(135deg,#f59e0b,#f97316);color:#061022}
+    .btn-test{background:linear-gradient(135deg,#06b6d4,#7c3aed);color:#061022}
+    /* preview */
+    .preview-wrap{display:flex;flex-direction:column;gap:12px}
+    .preview{background:#fff;color:#071022;border-radius:10px;padding:18px;border:1px solid #dbe7f8;overflow:auto}
+    .note{color:#9fb0d6;font-size:13px;margin-top:8px}
+    @media (max-width:980px){.frame{grid-template-columns:1fr;}.panel{order:2}}
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div class="frame" role="application" aria-label="Newsletter builder">
+      <aside class="panel" aria-label="Controls">
+        <h1>Newsletter Builder</h1>
+
+        <label>Headline
+          <input id="inpHead" type="text" placeholder="Big news this week" value="Big news this week">
+        </label>
+
+        <label>Subheadline
+          <input id="inpSub" type="text" placeholder="Short subheading" value="Short subheading">
+        </label>
+
+        <label>Body (separate paragraphs with blank line)
+          <textarea id="inpBody">This is the first paragraph.
+
+This is a second paragraph with more detail.</textarea>
+        </label>
+
+        <label>CTA Text
+          <input id="inpCtaText" type="text" placeholder="Read the article" value="Read the article">
+        </label>
+
+        <label>CTA URL
+          <input id="inpCtaUrl" type="text" placeholder="https://example.com/article" value="https://example.com/article">
+        </label>
+
+        <label>Paragraph under CTA
+          <textarea id="inpCtaPara">Short supporting paragraph under the CTA. This wraps and will not overflow.</textarea>
+        </label>
+
+        <label>Unsubscribe URL
+          <input id="inpUnsub" type="text" placeholder="https://example.com/unsubscribe" value="https://example.com/unsubscribe">
+        </label>
+
+        <label>Color theme
+          <select id="inpTheme">
+            <option value="aurora">Aurora</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="sunset">Sunset</option>
+            <option value="steel">Steel</option>
+          </select>
+        </label>
+
+        <div class="actions" role="group" aria-label="Actions">
+          <button id="btnTest" class="btn-test" title="Open test link in new tab">Get Test Link</button>
+          <button id="btnExport" class="btn-export" title="Download HTML file">Export HTML</button>
+        </div>
+
+        <p class="note">Test Link opens a temporary preview (blob URL). Export downloads a standalone HTML file. CTA and unsubscribe links are included and open in a new tab.</p>
+      </aside>
+
+      <main class="preview-wrap">
+        <div class="preview" id="preview" aria-live="polite">
+          <!-- preview rendered here -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // DOM
+    const inpHead = document.getElementById('inpHead');
+    const inpSub = document.getElementById('inpSub');
+    const inpBody = document.getElementById('inpBody');
+    const inpCtaText = document.getElementById('inpCtaText');
+    const inpCtaUrl = document.getElementById('inpCtaUrl');
+    const inpCtaPara = document.getElementById('inpCtaPara');
+    const inpUnsub = document.getElementById('inpUnsub');
+    const inpTheme = document.getElementById('inpTheme');
+
+    const preview = document.getElementById('preview');
+    const btnTest = document.getElementById('btnTest');
+    const btnExport = document.getElementById('btnExport');
+
+    // Themes
+    const THEMES = {
+      aurora:{top:'#7c3aed',cta:'#06b6d4'},
+      blue:{top:'#2563eb',cta:'#3b82f6'},
+      green:{top:'#16a34a',cta:'#22c55e'},
+      sunset:{top:'#fb923c',cta:'#ef4444'},
+      steel:{top:'#64748b',cta:'#94a3b8'}
+    };
+
+    // Escaping helpers
+    function escText(s){
+      if(s == null) return '';
+      return String(s)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'",'&#39;');
+    }
+    function escAttr(s){
+      return escText(s).replaceAll('"','%22');
+    }
+
+    // Convert body to paragraphs
+    function bodyToHtml(text){
+      if(!text) return '';
+      const parts = String(text).split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+      return parts.map(p => `<p style="margin:0 0 14px 0;color:#334155;font-size:16px;line-height:1.6">${escText(p).replace(/\n/g,'<br>')}</p>`).join('');
+    }
+
+    // Build the standalone email HTML (table-based, inline styles)
+    function buildEmailHtml(){
+      const theme = THEMES[inpTheme.value] || THEMES.aurora;
+      const title = escText(inpHead.value || '');
+      const sub = escText(inpSub.value || '');
+      const bodyHtml = bodyToHtml(inpBody.value || '');
+      const ctaText = escText(inpCtaText.value || '');
+      const ctaUrl = inpCtaUrl.value ? escAttr(inpCtaUrl.value) : '#';
+      const ctaPara = escText(inpCtaPara.value || '');
+      const unsub = inpUnsub.value ? escAttr(inpUnsub.value) : '{{unsubscribe}}';
+
+      // Minimal email-safe template (tables + inline styles). Links open in new tab.
+      return `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>${title || 'Newsletter'}</title>
+</head>
+<body style="margin:0;padding:20px;background:${theme.top};font-family:Arial,Helvetica,sans-serif;color:#071022;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="640" cellpadding="0" cellspacing="0" style="max-width:100%;background:#ffffff;border-radius:10px;overflow:hidden;border-collapse:collapse;">
+          <tr>
+            <td style="padding:28px 20px;text-align:center;background:${theme.top};color:#ffffff;">
+              <h1 style="margin:0;font-size:22px;line-height:1.1">${title}</h1>
+              <div style="margin-top:8px;color:#e6eef8;font-size:15px">${sub}</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px 20px;text-align:left;">
+              ${bodyHtml}
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:22px 20px;text-align:center;">
+              <a href="${ctaUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;border-radius:8px;background:${theme.cta};color:#061022;text-decoration:none;font-weight:800">${ctaText}</a>
+              <div style="max-width:640px;margin:12px auto 0;color:#475569;line-height:1.6;word-wrap:break-word;text-align:left">
+                ${ctaPara ? `<p style="margin:0">${escText(ctaPara)}</p>` : ''}
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:18px 20px;text-align:center;color:#94a3b8;font-size:13px;">
+              <div style="margin-bottom:6px">${escText(unsub)}</div>
+              <a href="${unsub}" target="_blank" rel="noopener noreferrer" style="color:${theme.cta};text-decoration:none">Unsubscribe</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+    }
+
+    // Render the preview inside builder
+    function renderPreview(){
+      try{
+        preview.innerHTML = buildEmailHtml();
+      }catch(e){
+        preview.textContent = 'Preview failed: ' + e.message;
+      }
+    }
+
+    // Export (download) HTML file
+    function exportHtml(){
+      const html = buildEmailHtml();
+      const blob = new Blob([html], {type:'text/html'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'newsletter.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(()=>URL.revokeObjectURL(a.href), 1500);
+    }
+
+    // Test link (open temp blob in new tab)
+    function openTestLink(){
+      const html = buildEmailHtml();
+      const blob = new Blob([html], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+      // we intentionally do not revoke immediately so user can use the tab.
+      // it will be revoked when the session ends or later if you want.
+    }
+
+    // Wire events
+    [inpHead, inpSub, inpBody, inpCtaText, inpCtaUrl, inpCtaPara, inpUnsub, inpTheme].forEach(el=>{
+      el.addEventListener('input', renderPreview);
+    });
+    btnExport.addEventListener('click', exportHtml);
+    btnTest.addEventListener('click', openTestLink);
+
+    // initial render
+    renderPreview();
+  </script>
+</body>
+</html>
