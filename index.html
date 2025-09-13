@@ -1,46 +1,1343 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Big news this week</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Gallery Maker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;500;700&family=Montserrat:wght@300;500;700&family=Raleway:wght@300;500;700&family=Poppins:wght@300;500;700&family=Oxanium:wght@300;500;700&family=Audiowide&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-primary: #00f3ff;
+            --neon-secondary: #ff2d95;
+            --neon-accent: #0ffc33;
+            --neon-alternate: #bf00ff;
+            --neon-highlight: #fffc00;
+            --title-color: #00f3ff;
+            --desc-color: #0ffc33;
+            --dark-bg: #0a0a16;
+            --darker-bg: #050510;
+            --card-bg: rgba(16, 18, 36, 0.8);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 70%);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(10, 12, 28, 0.6);
+            border-radius: 16px;
+            border: 1px solid var(--neon-primary);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.3;
+            background: linear-gradient(45deg, var(--neon-primary), var(--neon-alternate), var(--neon-secondary));
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--neon-primary),
+                         0 0 20px var(--neon-primary);
+            background: linear-gradient(45deg, var(--neon-primary), var(--neon-alternate));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite alternate;
+        }
+        
+        .app-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .app-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        
+        .controls-section {
+            flex: 1;
+            min-width: 320px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid var(--neon-primary);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+        
+        .preview-section {
+            flex: 2;
+            min-width: 320px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid var(--neon-primary);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--neon-alternate);
+            color: var(--neon-primary);
+            text-shadow: 0 0 5px var(--neon-primary);
+            letter-spacing: 1px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--neon-accent);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--neon-alternate);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--neon-primary);
+            box-shadow: 0 0 10px var(--neon-primary);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        button {
+            padding: 12px 20px;
+            background: linear-gradient(45deg, var(--neon-alternate), var(--neon-primary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px var(--neon-primary);
+        }
+        
+        .color-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .color-option.active {
+            border-color: white;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px white;
+        }
+        
+        .font-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .font-option {
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--neon-alternate);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .font-option.active {
+            border-color: var(--neon-primary);
+            background: rgba(0, 243, 255, 0.2);
+            box-shadow: 0 0 10px var(--neon-primary);
+        }
+        
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .font-rajdhani { font-family: 'Rajdhani', sans-serif; }
+        .font-montserrat { font-family: 'Montserrat', sans-serif; }
+        .font-raleway { font-family: 'Raleway', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        .font-oxanium { font-family: 'Oxanium', cursive; }
+        .font-audiowide { font-family: 'Audiowide', cursive; }
+        
+        .gallery-preview {
+            margin-top: 30px;
+        }
+        
+        .gallery-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .gallery-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px var(--title-color);
+            transition: all 0.3s ease;
+            color: var(--title-color);
+        }
+        
+        .gallery-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            color: var(--desc-color);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-item.empty::before {
+            content: '+';
+            font-size: 2rem;
+            color: var(--neon-primary);
+            opacity: 0.7;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-primary);
+            box-shadow: 0 0 15px var(--neon-primary);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item:hover .image-overlay {
+            opacity: 1;
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 16, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            border: 2px solid var(--neon-primary);
+            box-shadow: 0 0 30px var(--neon-alternate);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            text-shadow: 0 0 10px var(--neon-secondary);
+            transition: all 0.3s;
+        }
+        
+        .lightbox-close:hover {
+            color: var(--neon-secondary);
+            transform: scale(1.2);
+        }
+        
+        .lightbox-caption {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: var(--neon-accent);
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-generate {
+            background: linear-gradient(45deg, var(--neon-secondary), var(--neon-alternate));
+        }
+        
+        .btn-clear {
+            background: linear-gradient(45deg, #ff3300, #ff9900);
+        }
+        
+        .btn-export {
+            background: linear-gradient(45deg, #0ffc33, #00f3ff);
+        }
+        
+        .color-selectors {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .color-selector {
+            flex: 1;
+        }
+        
+        .color-selector-title {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--neon-accent);
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(10, 12, 28, 0.6);
+            border-radius: 16px;
+            border: 1px solid var(--neon-primary);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+            text-align: center;
+            width: 100%;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--neon-primary);
+            text-shadow: 0 0 10px var(--neon-primary);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-item i {
+            color: var(--neon-accent);
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            color: var(--neon-primary);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--neon-accent);
+            transform: translateY(-3px);
+            text-shadow: 0 0 10px var(--neon-accept);
+        }
+        
+        .footer-edit-toggle {
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--neon-alternate);
+            color: var(--neon-primary);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .footer-edit-toggle:hover {
+            background: rgba(0, 243, 255, 0.2);
+        }
+        
+        .footer-edit-form {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border: 1px solid var(--neon-alternate);
+        }
+        
+        .footer-edit-form .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .footer-edit-form label {
+            font-size: 1rem;
+        }
+        
+        .footer-edit-form input {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+        
+        @keyframes pulse {
+            0% { text-shadow: 0 0 10px var(--neon-primary), 0 0 20px var(--neon-primary); }
+            100% { text-shadow: 0 0 15px var(--neon-primary), 0 0 30px var(--neon-primary); }
+        }
+        
+        .glowing-text {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--neon-primary); }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--neon-alternate); }
+        }
+        
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .color-selectors {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .font-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            header, .controls-section, .preview-section, footer {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
 </head>
-<body style="margin:0;padding:20px;background:#7c3aed;font-family:Arial,Helvetica,sans-serif;color:#071022;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
-    <tr>
-      <td align="center">
-        <table role="presentation" width="640" cellpadding="0" cellspacing="0" style="max-width:100%;background:#ffffff;border-radius:10px;overflow:hidden;border-collapse:collapse;">
-          <tr>
-            <td style="padding:28px 20px;text-align:center;background:#7c3aed;color:#ffffff;">
-              <h1 style="margin:0;font-size:22px;line-height:1.1">Big news this week</h1>
-              <div style="margin-top:8px;color:#e6eef8;font-size:15px">Short subheading</div>
-            </td>
-          </tr>
+<body>
+    <div class="container">
+        <header>
+            <h1>NEON GALLERY MAKER</h1>
+            <p class="app-description">Create stunning futuristic image galleries with glowing neon effects. Add up to 16 images with your own links!</p>
+        </header>
+        
+        <div class="app-container">
+            <div class="controls-section">
+                <h2 class="section-title">CUSTOMIZE YOUR GALLERY</h2>
+                
+                <div class="form-group">
+                    <label for="gallery-title"><i class="fas fa-heading"></i> Gallery Title</label>
+                    <input type="text" id="gallery-title" placeholder="Enter gallery title" value="MY AWESOME GALLERY">
+                </div>
+                
+                <div class="form-group">
+                    <label for="gallery-desc"><i class="fas fa-paragraph"></i> Gallery Description</label>
+                    <textarea id="gallery-desc" placeholder="Enter gallery description">Welcome to my futuristic gallery featuring amazing neon-themed visuals.</textarea>
+                </div>
+                
+                <div class="color-selectors">
+                    <div class="color-selector">
+                        <div class="color-selector-title">Title Color</div>
+                        <div class="color-options">
+                            <div class="color-option active" style="background-color: #00f3ff" data-color="00f3ff" data-type="title"></div>
+                            <div class="color-option" style="background-color: #ff2d95" data-color="ff2d95" data-type="title"></div>
+                            <div class="color-option" style="background-color: #0ffc33" data-color="0ffc33" data-type="title"></div>
+                            <div class="color-option" style="background-color: #bf00ff" data-color="bf00ff" data-type="title"></div>
+                            <div class="color-option" style="background-color: #fffc00" data-color="fffc00" data-type="title"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-selector">
+                        <div class="color-selector-title">Description Color</div>
+                        <div class="color-options">
+                            <div class="color-option" style="background-color: #00f3ff" data-color="00f3ff" data-type="desc"></div>
+                            <div class="color-option active" style="background-color: #0ffc33" data-color="0ffc33" data-type="desc"></div>
+                            <div class="color-option" style="background-color: #ff2d95" data-color="ff2d95" data-type="desc"></div>
+                            <div class="color-option" style="background-color: #bf00ff" data-color="bf00ff" data-type="desc"></div>
+                            <div class="color-option" style="background-color: #fffc00" data-color="fffc00" data-type="desc"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-font"></i> Choose Font Style</label>
+                    <div class="font-options">
+                        <div class="font-option active font-orbitron" data-font="orbitron">Orbitron</div>
+                        <div class="font-option font-rajdhani" data-font="rajdhani">Rajdhani</div>
+                        <div class="font-option font-montserrat" data-font="montserrat">Montserrat</div>
+                        <div class="font-option font-raleway" data-font="raleway">Raleway</div>
+                        <div class="font-option font-poppins" data-font="poppins">Poppins</div>
+                        <div class="font-option font-oxanium" data-font="oxanium">Oxanium</div>
+                        <div class="font-option font-audiowide" data-font="audiowide">Audiowide</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image-links"><i class="fas fa-link"></i> Image URLs (One per line, max 16)</label>
+                    <textarea id="image-links" placeholder="Paste image URLs here (one per line)" rows="8"></textarea>
+                </div>
+                
+                <div class="actions">
+                    <button id="generate-btn" class="btn-generate"><i class="fas fa-magic"></i> Generate Gallery</button>
+                    <button id="clear-btn" class="btn-clear"><i class="fas fa-trash"></i> Clear All</button>
+                    <button id="export-btn" class="btn-export"><i class="fas fa-download"></i> Export HTML</button>
+                </div>
+            </div>
+            
+            <div class="preview-section">
+                <h2 class="section-title">GALLERY PREVIEW</h2>
+                
+                <div class="gallery-preview">
+                    <div class="gallery-header">
+                        <h2 id="preview-title" class="gallery-title glowing-text">MY AWESOME GALLERY</h2>
+                        <p id="preview-desc" class="gallery-description">Welcome to my futuristic gallery featuring amazing neon-themed visuals.</p>
+                    </div>
+                    
+                    <div class="gallery-grid" id="gallery-container">
+                        <!-- 16 empty gallery slots -->
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                        <div class="gallery-item empty"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <h3 class="footer-title">CONTACT INFORMATION</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span id="footer-email">email@example.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span id="footer-phone">(123) 456-7890</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="footer-address">Your City, Country</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" id="footer-facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" id="footer-twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank" id="footer-instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com" target="_blank" id="footer-linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com" target="_blank" id="footer-github"><i class="fab fa-github"></i></a>
+                    <a href="https://snapchat.com" target="_blank" id="footer-snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+                    <a href="https://youtube.com" target="_blank" id="footer-youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+                
+                <button class="footer-edit-toggle" id="footer-edit-toggle">
+                    <i class="fas fa-edit"></i> Edit Footer
+                </button>
+                
+                <div class="footer-edit-form" id="footer-edit-form">
+                    <div class="form-group">
+                        <label for="edit-email">Email</label>
+                        <input type="text" id="edit-email" value="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-phone">Phone</label>
+                        <input type="text" id="edit-phone" value="(123) 456-7890">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-address">Address</label>
+                        <input type="text" id="edit-address" value="Your City, Country">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-facebook">Facebook URL</label>
+                        <input type="text" id="edit-facebook" value="https://facebook.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-twitter">Twitter URL</label>
+                        <input type="text" id="edit-twitter" value="https://twitter.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-instagram">Instagram URL</label>
+                        <input type="text" id="edit-instagram" value="https://instagram.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-linkedin">LinkedIn URL</label>
+                        <input type="text" id="edit-linkedin" value="https://linkedin.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-github">GitHub URL</label>
+                        <input type="text" id="edit-github" value="https://github.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-snapchat">SnapChat URL</label>
+                        <input type="text" id="edit-snapchat" value="https://snapchat.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-youtube">YouTube URL</label>
+                        <input type="text" id="edit-youtube" value="https://youtube.com">
+                    </div>
+                    <button id="save-footer-btn">Save Footer Changes</button>
+                </div>
+            </div>
+        </footer>
+        
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-content">
+                <span class="lightbox-close" id="lightbox-close">&times;</span>
+                <img class="lightbox-img" id="lightbox-img" src="" alt="">
+                <div class="lightbox-caption" id="lightbox-caption"></div>
+            </div>
+        </div>
+    </div>
 
-          <tr>
-            <td style="padding:20px 20px;text-align:left;">
-              <p style="margin:0 0 14px 0;color:#334155;font-size:16px;line-height:1.6">This is the first paragraph.</p><p style="margin:0 0 14px 0;color:#334155;font-size:16px;line-height:1.6">This is a second paragraph with more detail.</p>
-            </td>
-          </tr>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const generateBtn = document.getElementById('generate-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const exportBtn = document.getElementById('export-btn');
+            const galleryContainer = document.getElementById('gallery-container');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const previewTitle = document.getElementById('preview-title');
+            const previewDesc = document.getElementById('preview-desc');
+            const galleryTitleInput = document.getElementById('gallery-title');
+            const galleryDescInput = document.getElementById('gallery-desc');
+            
+            // Footer elements
+            const footerEmail = document.getElementById('footer-email');
+            const footerPhone = document.getElementById('footer-phone');
+            const footerAddress = document.getElementById('footer-address');
+            const footerFacebook = document.getElementById('footer-facebook');
+            const footerTwitter = document.getElementById('footer-twitter');
+            const footerInstagram = document.getElementById('footer-instagram');
+            const footerLinkedin = document.getElementById('footer-linkedin');
+            const footerGithub = document.getElementById('footer-github');
+            const footerSnapchat = document.getElementById('footer-snapchat');
+            const footerYoutube = document.getElementById('footer-youtube');
+            
+            // Footer edit elements
+            const footerEditToggle = document.getElementById('footer-edit-toggle');
+            const footerEditForm = document.getElementById('footer-edit-form');
+            const editEmail = document.getElementById('edit-email');
+            const editPhone = document.getElementById('edit-phone');
+            const editAddress = document.getElementById('edit-address');
+            const editFacebook = document.getElementById('edit-facebook');
+            const editTwitter = document.getElementById('edit-twitter');
+            const editInstagram = document.getElementById('edit-instagram');
+            const editLinkedin = document.getElementById('edit-linkedin');
+            const editGithub = document.getElementById('edit-github');
+            const editSnapchat = document.getElementById('edit-snapchat');
+            const editYoutube = document.getElementById('edit-youtube');
+            const saveFooterBtn = document.getElementById('save-footer-btn');
+            
+            // Color options
+            const colorOptions = document.querySelectorAll('.color-option');
+            
+            // Font options
+            const fontOptions = document.querySelectorAll('.font-option');
+            let selectedFont = 'orbitron';
+            
+            // Set up color selection
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const colorType = this.getAttribute('data-type');
+                    const colorValue = this.getAttribute('data-color');
+                    
+                    // Remove active class from all options of this type
+                    document.querySelectorAll(`.color-option[data-type="${colorType}"]`).forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    
+                    // Update the color variable
+                    if (colorType === 'title') {
+                        document.documentElement.style.setProperty('--title-color', `#${colorValue}`);
+                        previewTitle.style.color = `#${colorValue}`;
+                    } else if (colorType === 'desc') {
+                        document.documentElement.style.setProperty('--desc-color', `#${colorValue}`);
+                        previewDesc.style.color = `#${colorValue}`;
+                    }
+                });
+            });
+            
+            // Set up font selection
+            fontOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    fontOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedFont = this.getAttribute('data-font');
+                    updateFonts();
+                });
+            });
+            
+            // Generate gallery
+            generateBtn.addEventListener('click', function() {
+                generateGallery();
+            });
+            
+            // Clear all
+            clearBtn.addEventListener('click', function() {
+                galleryTitleInput.value = '';
+                galleryDescInput.value = '';
+                document.getElementById('image-links').value = '';
+                
+                // Reset to default font
+                fontOptions.forEach(opt => opt.classList.remove('active'));
+                document.querySelector('[data-font="orbitron"]').classList.add('active');
+                selectedFont = 'orbitron';
+                updateFonts();
+                
+                // Clear gallery
+                const galleryItems = galleryContainer.querySelectorAll('.gallery-item');
+                galleryItems.forEach(item => {
+                    item.innerHTML = '';
+                    item.classList.add('empty');
+                    item.classList.remove('has-image');
+                });
+                
+                previewTitle.textContent = 'MY AWESOME GALLERY';
+                previewDesc.textContent = 'Your gallery description will appear here';
+            });
+            
+            // Export HTML
+            exportBtn.addEventListener('click', function() {
+                exportHTML();
+            });
+            
+            // Update title and description in real-time
+            galleryTitleInput.addEventListener('input', function() {
+                previewTitle.textContent = this.value || 'MY AWESOME GALLERY';
+            });
+            
+            galleryDescInput.addEventListener('input', function() {
+                previewDesc.textContent = this.value || 'Your gallery description will appear here';
+            });
+            
+            // Lightbox functionality
+            lightboxClose.addEventListener('click', function() {
+                lightbox.style.display = 'none';
+            });
+            
+            // Close lightbox when clicking outside
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                }
+            });
+            
+            // Footer edit functionality
+            footerEditToggle.addEventListener('click', function() {
+                if (footerEditForm.style.display === 'block') {
+                    footerEditForm.style.display = 'none';
+                    this.innerHTML = '<i class="fas fa-edit"></i> Edit Footer';
+                } else {
+                    footerEditForm.style.display = 'block';
+                    this.innerHTML = '<i class="fas fa-times"></i> Close Editor';
+                    
+                    // Populate form with current values
+                    editEmail.value = footerEmail.textContent;
+                    editPhone.value = footerPhone.textContent;
+                    editAddress.value = footerAddress.textContent;
+                    editFacebook.value = footerFacebook.href;
+                    editTwitter.value = footerTwitter.href;
+                    editInstagram.value = footerInstagram.href;
+                    editLinkedin.value = footerLinkedin.href;
+                    editGithub.value = footerGithub.href;
+                    editSnapchat.value = footerSnapchat.href;
+                    editYoutube.value = footerYoutube.href;
+                }
+            });
+            
+            // Save footer changes
+            saveFooterBtn.addEventListener('click', function() {
+                footerEmail.textContent = editEmail.value;
+                footerPhone.textContent = editPhone.value;
+                footerAddress.textContent = editAddress.value;
+                footerFacebook.href = ensureHttp(editFacebook.value);
+                footerTwitter.href = ensureHttp(editTwitter.value);
+                footerInstagram.href = ensureHttp(editInstagram.value);
+                footerLinkedin.href = ensureHttp(editLinkedin.value);
+                footerGithub.href = ensureHttp(editGithub.value);
+                footerSnapchat.href = ensureHttp(editSnapchat.value);
+                footerYoutube.href = ensureHttp(editYoutube.value);
+                
+                footerEditForm.style.display = 'none';
+                footerEditToggle.innerHTML = '<i class="fas fa-edit"></i> Edit Footer';
+                
+                alert('Footer changes saved successfully!');
+            });
+            
+            // Generate gallery function
+            function generateGallery() {
+                const title = galleryTitleInput.value || 'MY AWESOME GALLERY';
+                const description = galleryDescInput.value || 'Your gallery description will appear here';
+                const imageLinks = document.getElementById('image-links').value.split('\n').filter(link => link.trim() !== '');
+                
+                previewTitle.textContent = title;
+                previewDesc.textContent = description;
+                
+                // Clear existing images but keep the item structure
+                const galleryItems = galleryContainer.querySelectorAll('.gallery-item');
+                
+                // Reset all gallery items
+                galleryItems.forEach(item => {
+                    item.innerHTML = '';
+                    item.classList.add('empty');
+                    item.classList.remove('has-image');
+                });
+                
+                if (imageLinks.length === 0) {
+                    return;
+                }
+                
+                // Add images to the first N slots
+                for (let i = 0; i < Math.min(imageLinks.length, 16); i++) {
+                    const link = imageLinks[i];
+                    const galleryItem = galleryItems[i];
+                    
+                    galleryItem.classList.remove('empty');
+                    galleryItem.classList.add('has-image');
+                    
+                    // Create image element with centered styling
+                    const img = document.createElement('img');
+                    img.src = link;
+                    img.alt = `Gallery image ${i + 1}`;
+                    img.onerror = function() {
+                        this.style.display = 'none';
+                        this.parentElement.classList.add('empty');
+                    };
+                    
+                    // Clear previous content and add the image
+                    galleryItem.innerHTML = '';
+                    galleryItem.appendChild(img);
+                    
+                    galleryItem.addEventListener('click', function() {
+                        lightboxImg.src = link;
+                        lightboxCaption.textContent = `Image ${i + 1}`;
+                        lightbox.style.display = 'flex';
+                    });
+                }
+            }
+            
+            // Update fonts based on selection
+            function updateFonts() {
+                if (selectedFont === 'orbitron') {
+                    previewTitle.style.fontFamily = 'Orbitron, sans-serif';
+                    previewDesc.style.fontFamily = 'Montserrat, sans-serif';
+                } else if (selectedFont === 'rajdhani') {
+                    previewTitle.style.fontFamily = 'Rajdhani, sans-serif';
+                    previewDesc.style.fontFamily = 'Rajdhani, sans-serif';
+                } else if (selectedFont === 'montserrat') {
+                    previewTitle.style.fontFamily = 'Montserrat, sans-serif';
+                    previewDesc.style.fontFamily = 'Montserrat, sans-serif';
+                } else if (selectedFont === 'raleway') {
+                    previewTitle.style.fontFamily = 'Raleway, sans-serif';
+                    previewDesc.style.fontFamily = 'Raleway, sans-serif';
+                } else if (selectedFont === 'poppins') {
+                    previewTitle.style.fontFamily = 'Poppins, sans-serif';
+                    previewDesc.style.fontFamily = 'Poppins, sans-serif';
+                } else if (selectedFont === 'oxanium') {
+                    previewTitle.style.fontFamily = 'Oxanium, cursive';
+                    previewDesc.style.fontFamily = 'Oxanium, cursive';
+                } else if (selectedFont === 'audiowide') {
+                    previewTitle.style.fontFamily = 'Audiowide, cursive';
+                    previewDesc.style.fontFamily = 'Audiowide, cursive';
+                }
+            }
+            
+            // Ensure URLs have http/https prefix
+            function ensureHttp(url) {
+                if (!url) return '#';
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    return 'https://' + url;
+                }
+                return url;
+            }
+            
+            // Export HTML function
+            function exportHTML() {
+                const title = galleryTitleInput.value || 'MY AWESOME GALLERY';
+                const description = galleryDescInput.value || 'Your gallery description will appear here';
+                const imageLinks = document.getElementById('image-links').value.split('\n').filter(link => link.trim() !== '');
+                
+                // Get title and description colors
+                const titleColor = document.querySelector('.color-option.active[data-type="title"]').getAttribute('data-color');
+                const descColor = document.querySelector('.color-option.active[data-type="desc"]').getAttribute('data-color');
+                
+                // Get selected font
+                const selectedFont = document.querySelector('.font-option.active').getAttribute('data-font');
+                
+                // Generate gallery HTML
+                let galleryHTML = '';
+                for (let i = 0; i < 16; i++) {
+                    if (i < imageLinks.length) {
+                        galleryHTML += `<div class="gallery-item">
+                            <img src="${imageLinks[i]}" alt="Gallery image ${i+1}">
+                        </div>`;
+                    } else {
+                        galleryHTML += '<div class="gallery-item empty"></div>';
+                    }
+                }
+                
+                // Generate final HTML
+                const finalHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;500;700&family=Montserrat:wght@300;500;700&family=Raleway:wght@300;500;700&family=Poppins:wght@300;500;700&family=Oxanium:wght@300;500;700&family=Audiowide&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-primary: #00f3ff;
+            --neon-secondary: #ff2d95;
+            --neon-accent: #0ffc33;
+            --neon-alternate: #bf00ff;
+            --neon-highlight: #fffc00;
+            --title-color: #${titleColor};
+            --desc-color: #${descColor};
+            --dark-bg: #0a0a16;
+            --darker-bg: #050510;
+            --card-bg: rgba(16, 18, 36, 0.8);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 70%);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .gallery-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .gallery-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px var(--title-color);
+            color: var(--title-color);
+            font-family: ${selectedFont === 'orbitron' ? "'Orbitron', sans-serif" : 
+                         selectedFont === 'rajdhani' ? "'Rajdhani', sans-serif" :
+                         selectedFont === 'montserrat' ? "'Montserrat', sans-serif" :
+                         selectedFont === 'raleway' ? "'Raleway', sans-serif" :
+                         selectedFont === 'poppins' ? "'Poppins', sans-serif" :
+                         selectedFont === 'oxanium' ? "'Oxanium', cursive" :
+                         "'Audiowide', cursive"};
+        }
+        
+        .gallery-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--desc-color);
+            font-family: ${selectedFont === 'orbitron' ? "'Montserrat', sans-serif" : 
+                         selectedFont === 'rajdhani' ? "'Rajdhani', sans-serif" :
+                         selectedFont === 'montserrat' ? "'Montserrat', sans-serif" :
+                         selectedFont === 'raleway' ? "'Raleway', sans-serif" :
+                         selectedFont === 'poppins' ? "'Poppins', sans-serif" :
+                         selectedFont === 'oxanium' ? "'Oxanium', cursive" :
+                         "'Audiowide', cursive"};
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-item.empty::before {
+            content: '+';
+            font-size: 2rem;
+            color: var(--neon-primary);
+            opacity: 0.7;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-primary);
+            box-shadow: 0 0 15px var(--neon-primary);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(10, 12, 28, 0.6);
+            border-radius: 16px;
+            border: 1px solid var(--neon-primary);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+            text-align: center;
+            width: 100%;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--neon-primary);
+            text-shadow: 0 0 10px var(--neon-primary);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-item i {
+            color: var(--neon-accent);
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            color: var(--neon-primary);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--neon-accent);
+            transform: translateY(-3px);
+            text-shadow: 0 0 10px var(--neon-accent);
+        }
+        
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gallery-header">
+            <h2 class="gallery-title">${title}</h2>
+            <p class="gallery-description">${description}</p>
+        </div>
+        
+        <div class="gallery-grid">
+            ${galleryHTML}
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <h3 class="footer-title">CONTACT INFORMATION</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>${footerEmail.textContent}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>${footerPhone.textContent}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>${footerAddress.textContent}</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="${footerFacebook.href}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="${footerTwitter.href}" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="${footerInstagram.href}" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="${footerLinkedin.href}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="${footerGithub.href}" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="${footerSnapchat.href}" target="_blank"><i class="fab fa-snapchat-ghost"></i></a>
+                    <a href="${footerYoutube.href}" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>`;
 
-          <tr>
-            <td style="padding:22px 20px;text-align:center;">
-              <a href="www.singanewpsalm.church" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;border-radius:8px;background:#06b6d4;color:#061022;text-decoration:none;font-weight:800">Read the article</a>
-              <div style="max-width:640px;margin:12px auto 0;color:#475569;line-height:1.6;word-wrap:break-word;text-align:left">
-                <p style="margin:0">Short supporting paragraph under the CTA. This wraps and will not overflow.</p>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td style="padding:18px 20px;text-align:center;color:#94a3b8;font-size:13px;">
-              <div style="margin-bottom:6px">www.singanewpsalm.church</div>
-              <a href="www.singanewpsalm.church" target="_blank" rel="noopener noreferrer" style="color:#06b6d4;text-decoration:none">Unsubscribe</a>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+                // Create download link
+                const blob = new Blob([finalHTML], {type: 'text/html'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'neon-gallery.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                alert('Gallery exported successfully!');
+            }
+        });
+    </script>
 </body>
 </html>
