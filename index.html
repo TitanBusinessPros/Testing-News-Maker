@@ -22,7 +22,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://github.com/TitanBusinessPros/Gameville-/raw/main/OKC-Favicon.png">
     
-    <!-- ====== UPDATED META TAGS FOR SOCIAL SHARING ====== -->
+    <!-- ====== CORRECT META TAGS - NO DUPLICATES ====== -->
     <!-- Primary Meta Tags -->
     <meta name="title" content="Tulsa.games - Tulsa's Newest Gaming Platform">
     <meta name="description" content="Welcome to Tulsa.games — Tulsa's newest and most exciting gaming platform! Explore a growing collection of fun and addictive games created for players of all ages.">
@@ -35,21 +35,962 @@
     <meta property="og:image" content="https://github.com/TitanBusinessPros/Gameville-/raw/main/Meta%20Tag.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Tulsa.games Gaming Platform - Where Tulsa plays, competes, and has a blast!">
+    <meta property="og:image:alt" content="Tulsa.games Gaming Platform">
     <meta property="og:site_name" content="Tulsa.games">
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://titanbusinesspros.github.io/Gameville/">
-    <meta property="twitter:title" content="Tulsa.games - Tulsa's Newest Gaming Platform">
-    <meta property="twitter:description" content="Welcome to Tulsa.games — Tulsa's newest and most exciting gaming platform! Explore a growing collection of fun and addictive games created for players of all ages. Whether you're here to pass the time or chase high scores, you'll find plenty to enjoy.">
-    <meta property="twitter:image" content="https://github.com/TitanBusinessPros/Gameville-/raw/main/Meta%20Tag.png">
-    <meta property="twitter:image:alt" content="Tulsa.games Gaming Platform">
-    
-    <!-- Additional Meta Tags -->
-    <meta name="keywords" content="Tulsa games, free online games, gaming platform, Oklahoma games, mobile games, no download games, Tulsa gaming">
-    <meta name="author" content="Tulsa.games">
-    <!-- ====== END UPDATED META TAGS ====== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tulsa.games - Tulsa's Newest Gaming Platform">
+    <meta name="twitter:description" content="Welcome to Tulsa.games — Tulsa's newest and most exciting gaming platform! Explore a growing collection of fun and addictive games created for players of all ages. Whether you're here to pass the time or chase high scores, you'll find plenty to enjoy.">
+    <meta name="twitter:image" content="https://github.com/TitanBusinessPros/Gameville-/raw/main/Meta%20Tag.png">
+    <!-- ====== END META TAGS ====== -->
     
     <!-- Font Awesome for Facebook icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://github.com/TitanBusinessPros/Gameville-/raw/main/Tulsa-games-back.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            padding: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .page-wrapper {
+            max-width: 1800px;
+            margin: 0 auto;
+            min-height: calc(100vh - 40px);
+            display: grid;
+            grid-template-rows: auto auto 1fr auto auto;
+            gap: 20px;
+        }
+
+        /* Header Styles */
+        .site-header {
+            text-align: center;
+            padding: 10px 20px 5px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-logo {
+            max-width: 300px;
+            height: auto;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            /* Initial animation */
+            animation: float 3s ease-in-out infinite;
+            margin-bottom: 5px;
+        }
+
+        .header-logo:hover {
+            animation-play-state: paused;
+        }
+
+        .header-title {
+            color: #333;
+            font-size: 2.2em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            margin: 0;
+        }
+
+        .daily-message {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Logo animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .footer-copyright {
+            font-size: 1em;
+            margin-bottom: 10px;
+            flex: 1;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex: 2;
+        }
+
+        .footer-social-link {
+            color: white;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social-link:hover {
+            color: #3b5998; /* Facebook blue */
+        }
+
+        .footer-phone, .footer-email {
+            font-size: 1em;
+        }
+
+        /* Top and Bottom ad rows */
+        .ads-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Middle area with left ads, center game, right ads */
+        .middle-row {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .ads-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .ad-box {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block;
+        }
+
+        .ad-box:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .ad-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .center-container {
+            background: rgba(255, 255, 255, 0.98);
+            border: 4px solid #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        .center-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .inner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .inner-item {
+            background: #fff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .inner-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 160px;
+            display: block;
+            overflow: hidden;
+            background: #f5f5f5;
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-container img.loaded {
+            opacity: 1;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.1);
+        }
+
+        .content {
+            padding: 15px;
+        }
+
+        .item-title {
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .item-description {
+            color: #666;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        /* Loading placeholder */
+        .image-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Music control */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.1);
+        }
+
+        /* Footer additions */
+        .footer-bottom {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        .footer-address, .footer-website {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .footer-website {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-website:hover {
+            text-decoration: underline;
+        }
+
+        /* Make it a bit nicer on small screens */
+        @media (max-width: 900px) {
+            .page-wrapper {
+                grid-template-rows: auto auto auto;
+            }
+
+            .middle-row {
+                grid-template-columns: 1fr;
+            }
+
+            .ads-col {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .ad-box {
+                width: 80px;
+                height: 80px;
+            }
+
+            .center-container {
+                height: auto;
+                max-height: 70vh;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .footer-contact {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .header-title {
+                font-size: 1.8em;
+            }
+
+            .daily-message {
+                font-size: 1em;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="background-music" loop>
+        <source src="https://github.com/TitanBusinessPros/Gameville-/raw/main/OKC%20Roofers%20Jingle.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- Music Control -->
+    <div class="music-control" id="music-toggle">
+        <i class="fas fa-music"></i>
+    </div>
+
+    <div class="page-wrapper">
+
+        <!-- HEADER SECTION -->
+        <header class="site-header">
+            <img src="https://github.com/TitanBusinessPros/Gameville-/raw/main/OKC-Top-2.png" class="header-logo" id="logo">
+            <h1 class="header-title">Discover Tulsa's Newest Gaming Platform.</h1>
+            <div class="daily-message">Check back weekly for new games!</div>
+        </header>
+
+        <!-- CENTER: Your game / gallery -->
+        <div class="middle-row">
+            <div class="center-container">
+                <h1 class="center-title"></h1>
+                <div class="inner-grid">
+                    <!-- All games restored with lazy loading -->
+
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Chess-Game/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/Chess%20Logo.png" alt="Chess">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Chess</h2>
+                            <p class="item-description">Test your skills in a game of Chess. Play two player or have fun playing against the AI! Good for mobile play!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Navy-War1/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Navy-War1/raw/main/Navy%20War-1%20Logo.png" alt="Chess">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Navy War-1</h2>
+                            <p class="item-description">Compete against AI in this strategy war game. Gain one submarine every five moves and use your five jets to take out the enemy! Works best on mobile.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Air-Hockey/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Air-Hockey/raw/main/Air%20Hockey-Logo2.png" alt="Chess">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Air Hockey</h2>
+                            <p class="item-description">Enjoy a quick round of Air Hockey with this one player game.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Guide-The-Fly/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Guide-The-Fly/raw/main/Guide%20The%20Fly%20Logo.png" alt="Chess">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Guide The Fly</h2>
+                            <p class="item-description">Take the fly to the light! Guide The Fly through 12 stages!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Sudoku-Game/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Sudoku-Game/raw/main/Sudoku-Logo.png" alt="Sudoku">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Sudoku</h2>
+                            <p class="item-description">Test your skills in a game of Sudoku. This is a one player game. Enjoy some relaxing music while you play.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Neon-Drift/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/SSG-Image/raw/main/Neon%20Drift%20Logo.png" alt="Neon Drift">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Neon Drift</h2>
+                            <p class="item-description">Get lost in the Neon Drift collecting orbs in this awesome one player game!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Gravity-Sling/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gravity-Sling/raw/main/Gravity%20Sling%20Logo.png" alt="Gravity Sling">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Gravity Sling</h2>
+                            <p class="item-description">Test your skills in a game of Gravity Sling. Do you have the math skills?  Only playable on tablet & desktop.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Detective/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Detective/raw/main/Detective%20Logo.png" alt="Detective">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Detective</h2>
+                            <p class="item-description">Solve crimes in this one player murder mystery game. Take notes, interview witnesses, and solve cases. Multiple endings that are determined by choice.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Dodge-Game/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Dodge-Game/raw/main/Dodge-Logo.png" alt="Dodge">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Dodge</h2>
+                            <p class="item-description">Think you've got quick reflexes? Prove it! A plumber's worst nightmare comes to life as you dodge flying toilets that get faster and faster.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Desert-Rattler-/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Desert-Rattler-/raw/main/Desert%20Rattler%20Logo.png" alt="Desert Rattler">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Desert Rattler</h2>
+                            <p class="item-description">Can you score 120 or higher? One player only. Good on mobile play!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Match-Time/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Match-Time/raw/main/Match%20Time%20Logo.png" alt="Match Time">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Match Time</h2>
+                            <p class="item-description">Test the your skills at this matching game! One player only. Good for mobile play!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Sea-War/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Sea-War/raw/main/SEA%20WAR%20Logo.png" alt="Sea War">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Sea War</h2>
+                            <p class="item-description">This is a basic sea battle game. Good for mobile play! Enjoy playing with a friend or in one player mode.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Frisbee-Golf/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Frisbee-Golf/raw/main/Frisbee%20Golf%20Logo%202.png" alt="Frisbee Golf">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Frisbee Golf</h2>
+                            <p class="item-description">You ready to get your frisbee golf on? Enjoy playing with a friend or one player with over 20 levels!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Checkers-Game/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/CheckersLogo.png" alt="Checkers">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Checkers</h2>
+                            <p class="item-description">Test your skills in a game of Checkers. Play two player or have fun playing against the AI! Tablet and computer only.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Hearts-Card-Game/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/Hearts.png" alt="Hearts">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Hearts</h2>
+                            <p class="item-description">Test your skills in a game of Hearts. Single player against the AI! Mobile friendly play!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Bowling-1/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/Bowling%20Game%20Logo.png" alt="Bowling">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Bowling</h2>
+                            <p class="item-description">A basic one or two player bowling game. Good for mobile play!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/BlackJack/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/Blackjack%20Logo.png" alt="Blackjack">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Blackjack</h2>
+                            <p class="item-description">Basic Blackjack game to pass time! Use desktop view on mobile to see the entire page.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Kids-Coloring-Fun/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/Kids%20Coloring%20Book%20Logo.png" alt="Kids Coloring Book">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Kids Coloring Book</h2>
+                            <p class="item-description">(Only Available On Tablet & Desktop. Kids will love this kids line art coloring book made by a kid! Best on a tablet or computer.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://best-businesses.github.io/Your-Company-Video-Game/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/Titan%20Space%20Defense%20Logo.png" alt="Titan Space Defense">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Titan Space Defense</h2>
+                            <p class="item-description">A cool space shooter game with 15 levels of excitement! Mobile Friendly!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://best-businesses.github.io/My-Food-Truck-Game/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/My%20Food%20Truck%20Logo.png" alt="My Food Truck">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">My Food Truck</h2>
+                            <p class="item-description">This cool little game gives you a food truck and says get to work! This is a one player game and best for tablet and computer. It may work on mobile in desktop mode.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Magical-Word-Search/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Education-Logos/raw/main/Magical%20Word%20Search.png" alt="Magical Word Search">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Magical Word Search</h2>
+                            <p class="item-description">This is a one player word search game. You can put in ten words to find in the puzzle! Great for studying spelling words!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://team-america.github.io/Patriotic-Blockade/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/Patriotic%20Blocks%20Logo.png" alt="Patriotic Blocks">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Patriotic Blocks</h2>
+                            <p class="item-description">This is a one player brain game. Good for mobile play!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Luxury-Casino/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/Luxury%20Casino-2-Logo.png" alt="Luxury Casino">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Luxury Casino</h2>
+                            <p class="item-description">This is a one player slot machine game. Enjoy a reward system and buy luxury shop items as you win!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Match-3/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Match-3/raw/main/Match-3%20Logo.png" alt="Match 3">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Match 3</h2>
+                            <p class="item-description">This is a one player symbol matching game. Enjoy groovy background music while you play!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Math-Tower-Defense/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Education-Logos/raw/main/Math%20Tower%20Defense.png" alt="Math Tower Defense">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Math Tower Defense</h2>
+                            <p class="item-description">(Only Avaiable on Desktop Version) This is a one player tower defense game.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Stacking-Checkers/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/Stacking%20Checkers%20Logo.png" alt="Stacking Checkers">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Stacking Checkers</h2>
+                            <p class="item-description">This is a one player checkers game. Good for mobile play! Enjoy this unique style of checkers! No downloads ever in Gameville!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/War-Card-Game/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/War-Card-Game/raw/main/War%20Logo.png" alt="War Card Game">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">War Card Game</h2>
+                            <p class="item-description">This is a one player card game. Enjoy groovy background music while you play! No sign up in Gameville! Just pure game play!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Follow-Along/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Follow-Along/raw/main/Follow%20Along%20Logo.png" alt="Follow Along">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Follow Along</h2>
+                            <p class="item-description">This is a one player memory game. Enjoy groovy background music while you play!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Space-Turkey/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Space-Turkey/raw/main/Space%20Turkey%20Game%20Logo.png" alt="Space Turkey">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Space Turkey</h2>
+                            <p class="item-description">This is a one player endless runner game. Avoid being a turkey dinner and jump over the kitchen table as it heads your way. Not tested for mobile.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Space-Math-Asteroids-Hard/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Education-Logos/raw/main/Space%20Asteroids.png" alt="Space Math Asteroids">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Space Math Asteroids</h2>
+                            <p class="item-description">(Only Available On Desktop) This is a one player space shooter game with over 20 levels. Answer a basic math question each level.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Golf-Game/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Golf-Game/raw/main/Golf%20Game%20Logo.png" alt="Golf Challenge">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Golf Challenge</h2>
+                            <p class="item-description">This is a one player or two player golf game with 24 holes. Not tested for mobile but works great on computer!.</p>
+                        </div>
+                    </div>
+              
+                    <div class="inner-item">
+                        <a href="https://titanbusinesspros.github.io/Space-Word-Mission/" class="image-container">
+                            <div class="image-placeholder"></div>
+                            <img loading="lazy" data-src="https://github.com/TitanBusinessPros/Gameville-Logos/raw/main/Space%20Word%20Mission%20Logo.png" alt="Space Word Mission">
+                        </a>
+                        <div class="content">
+                            <h2 class="item-title">Space Word Mission</h2>
+                            <p class="item-description">This is a one player word search game. Test your brain and see if you can take your spaceship to flight!</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: ads -->
+            <div class="ads-col">
+                <!-- Right column ads removed as requested -->
+            </div>
+        </div>
+
+        <!-- BOTTOM ROW: ads -->
+        <div class="ads-row">
+            <!-- Bottom row ads removed as requested -->
+        </div>
+
+        <!-- FOOTER SECTION -->
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-copyright">Copyright 2025 Your Roofing Company LLC</div>
+                <div class="footer-contact">
+                    <a href="https://www.facebook.com/p/OKC-Roofers-100067991445574/" class="footer-social-link" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/okcroofers/" class="footer-social-link" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@okcroofers829" class="footer-social-link" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <span class="footer-phone">(405)796-8858</span>
+                    <span class="footer-email">info@okcroofers.com</span>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-address">8901 S Santa Fe Ave suite h, Oklahoma City, OK, United States, Oklahoma</div>
+                    <a href="https://www.okcroofers.com" class="footer-website" target="_blank">www.okcroofers.com</a>
+                </div>
+            </div>
+        </footer>
+
+    <script>
+        // Image optimization and lazy loading
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lazy load images
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.getAttribute('data-src');
+                        img.addEventListener('load', () => {
+                            img.classList.add('loaded');
+                            const placeholder = img.previousElementSibling;
+                            if (placeholder && placeholder.classList.contains('image-placeholder')) {
+                                placeholder.style.display = 'none';
+                            }
+                        });
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => {
+                imageObserver.observe(img);
+            });
+
+            // Preload critical images
+            const criticalImages = [
+                'https://github.com/TitanBusinessPros/Gameville-/raw/main/OKC-Top-2.png'
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        });
+
+        // Make the logo interactive with mouse movement
+        const logo = document.getElementById('logo');
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        // Mouse events for dragging
+        logo.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - logo.getBoundingClientRect().left;
+            offsetY = e.clientY - logo.getBoundingClientRect().top;
+            logo.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const x = e.clientX - offsetX;
+                const y = e.clientY - offsetY;
+                
+                // Keep the logo within the header boundaries
+                const header = document.querySelector('.site-header');
+                const headerRect = header.getBoundingClientRect();
+                const logoRect = logo.getBoundingClientRect();
+                
+                const maxX = headerRect.width - logoRect.width;
+                const maxY = headerRect.height - logoRect.height;
+                
+                const boundedX = Math.max(0, Math.min(x, maxX));
+                const boundedY = Math.max(0, Math.min(y, maxY));
+                
+                logo.style.position = 'absolute';
+                logo.style.left = `${boundedX}px`;
+                logo.style.top = `${boundedY}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            logo.style.cursor = 'grab';
+        });
+
+        // Touch events for mobile devices
+        logo.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            const touch = e.touches[0];
+            offsetX = touch.clientX - logo.getBoundingClientRect().left;
+            offsetY = touch.clientY - logo.getBoundingClientRect().top;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (isDragging) {
+                const touch = e.touches[0];
+                const x = touch.clientX - offsetX;
+                const y = touch.clientY - offsetY;
+                
+                // Keep the logo within the header boundaries
+                const header = document.querySelector('.site-header');
+                const headerRect = header.getBoundingClientRect();
+                const logoRect = logo.getBoundingClientRect();
+                
+                const maxX = headerRect.width - logoRect.width;
+                const maxY = headerRect.height - logoRect.height;
+                
+                const boundedX = Math.max(0, Math.min(x, maxX));
+                const boundedY = Math.max(0, Math.min(y, maxY));
+                
+                logo.style.position = 'absolute';
+                logo.style.left = `${boundedX}px`;
+                logo.style.top = `${boundedY}px`;
+                
+                e.preventDefault(); // Prevent scrolling while dragging
+            }
+        });
+
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        // Background music functionality
+        const backgroundMusic = document.getElementById('background-music');
+        const musicToggle = document.getElementById('music-toggle');
+        let musicStarted = false;
+
+        // Set the music source
+        backgroundMusic.src = "https://github.com/TitanBusinessPros/Gameville-/raw/main/OKC%20Roofers%20Jingle.mp3";
+
+        // Function to start music
+        function startMusic() {
+            if (!musicStarted) {
+                backgroundMusic.volume = 0.5; // Set volume to 50%
+                backgroundMusic.play().then(() => {
+                    musicStarted = true;
+                    musicToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+                }).catch(error => {
+                    console.log('Audio play failed:', error);
+                });
+            }
+        }
+
+        // Event listeners for user interaction
+        document.addEventListener('touchstart', startMusic, { once: true });
+        document.addEventListener('scroll', startMusic, { once: true });
+        document.addEventListener('click', startMusic, { once: true });
+
+        // Toggle music on/off
+        musicToggle.addEventListener('click', function() {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                musicToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+                backgroundMusic.pause();
+                musicToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
