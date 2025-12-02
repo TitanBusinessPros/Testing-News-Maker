@@ -22,21 +22,28 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://github.com/TitanBusinessPros/Gameville-/raw/main/OKC-Favicon.png">
     
-    <!-- Canonical URL - Important for SEO and Facebook -->
-    <link rel="canonical" href="https://www.gameville.games/">
+    <!-- ====== FIXED FACEBOOK META TAGS ====== -->
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://titanbusinesspros.github.io/Testing-News-Maker/">
     
-    <!-- ====== CRITICAL FACEBOOK META TAGS ====== -->
-    <!-- Facebook Open Graph Tags -->
+    <!-- Facebook Open Graph Tags - UPDATED WITH WORKING IMAGE URL -->
     <meta property="og:title" content="Tulsa.games — Tulsa's Newest and Most Exciting Gaming Platform!">
     <meta property="og:description" content="Welcome to Tulsa.games — Tulsa's newest and most exciting gaming platform! Explore a growing collection of fun and addictive games created for players of all ages. Whether you're here to pass the time or chase high scores, you'll find plenty to enjoy. Jump into the action and discover fresh new games added regularly. Thanks for visiting Tulsa.games — where Tulsa plays, competes, and has a blast!">
-    <meta property="og:image" content="https://github.com/TitanBusinessPros/Gameville-/raw/main/Meta%20Tag.png">
-    <meta property="og:image:url" content="https://github.com/TitanBusinessPros/Gameville-/raw/main/Meta%20Tag.png">
-    <meta property="og:image:secure_url" content="https://github.com/TitanBusinessPros/Gameville-/raw/main/Meta%20Tag.png">
+    
+    <!-- MAIN IMAGE URL - Try using the GitHub Pages URL instead of raw -->
+    <meta property="og:image" content="https://titanbusinesspros.github.io/Gameville-/Meta%20Tag.png">
+    
+    <!-- BACKUP IMAGE URL - In case the first one doesn't work -->
+    <meta property="og:image:url" content="https://raw.githubusercontent.com/TitanBusinessPros/Gameville-/main/Meta%20Tag.png">
+    
+    <!-- Specify image dimensions and type -->
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="www.TULSA.GAMES - Tulsa's Gaming Platform">
+    <meta property="og:image:alt" content="Tulsa.games - Tulsa's Gaming Platform">
     <meta property="og:image:type" content="image/png">
-    <meta property="og:url" content="https://www.gameville.games/">
+    
+    <!-- URL and other properties -->
+    <meta property="og:url" content="https://titanbusinesspros.github.io/Testing-News-Maker/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Tulsa.games">
     <meta property="og:locale" content="en_US">
@@ -45,21 +52,23 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tulsa.games — Tulsa's Newest and Most Exciting Gaming Platform!">
     <meta name="twitter:description" content="Welcome to Tulsa.games — Tulsa's newest and most exciting gaming platform! Explore a growing collection of fun and addictive games created for players of all ages. Whether you're here to pass the time or chase high scores, you'll find plenty to enjoy. Jump into the action and discover fresh new games added regularly. Thanks for visiting Tulsa.games — where Tulsa plays, competes, and has a blast!">
-    <meta name="twitter:image" content="https://github.com/TitanBusinessPros/Gameville-/raw/main/Meta%20Tag.png">
-    <meta name="twitter:image:alt" content="www.TULSA.GAMES - Tulsa's Gaming Platform">
+    <meta name="twitter:image" content="https://titanbusinesspros.github.io/Gameville-/Meta%20Tag.png">
+    <meta name="twitter:image:alt" content="Tulsa.games - Tulsa's Gaming Platform">
     <meta name="twitter:site" content="@TulsaGames">
-    <meta name="twitter:creator" content="@TulsaGames">
     
     <!-- Standard Meta Tags -->
     <meta name="description" content="Welcome to Tulsa.games — Tulsa's newest and most exciting gaming platform! Explore a growing collection of fun and addictive games created for players of all ages. Whether you're here to pass the time or chase high scores, you'll find plenty to enjoy. Jump into the action and discover fresh new games added regularly. Thanks for visiting Tulsa.games — where Tulsa plays, competes, and has a blast!">
     <meta name="keywords" content="Tulsa games, online games, free games, gaming platform, Oklahoma games, play games">
     
-    <!-- Additional Facebook/Twitter tags -->
-    <meta property="fb:app_id" content="">
-    <meta name="twitter:domain" content="gameville.games">
-    
     <!-- Font Awesome for Facebook icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- IMPORTANT: Also add a hidden image on the page that Facebook can find -->
+    <style>
+        .facebook-share-image {
+            display: none;
+        }
+    </style>
     
     <style>
         * {
@@ -436,6 +445,11 @@
     </style>
 </head>
 <body>
+    <!-- HIDDEN IMAGE FOR FACEBOOK TO FIND -->
+    <div class="facebook-share-image">
+        <img src="https://titanbusinesspros.github.io/Gameville-/Meta%20Tag.png" alt="Tulsa.games Share Image" style="display:none;">
+    </div>
+    
     <!-- Background Music -->
     <audio id="background-music" loop>
         <source src="https://github.com/TitanBusinessPros/Gameville-/raw/main/OKC%20Roofers%20Jingle.mp3" type="audio/mpeg">
